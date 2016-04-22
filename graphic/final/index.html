@@ -560,7 +560,16 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  	<a onClick="lastmode()" href="#" >&laquo; Anterior</a>
  	<a onClick="nextmode()" href="#" >Següent &raquo;</a>
 </span>
+<div id="infosign" style="display: inline-block; float: right">
+&#9432;
+  <div id="legende"><p>Cada cercle representa una biblioteca. El color correspon al districte.</p>
 
+  <p>Si poses el ratolí sobre el cercle obtindrás més informacó i si el cliques seguiràs la posició de la biblioteca per tota la visualització.</p>
+
+  <p>Si vols pots <a target="_blank" href="embed.html">incrustar  </a>aquest interactiu a la teva pàgina web. 
+
+  <p style="font-size:80%">Aquest interactiu està basat en el treball de  <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a> i <a href="http://speedupeurope.eu">Speed Europe</a>. Pots agafar el codi obert desde el <a href="http://githhub.com">Github</a> del BTV Datalab.</p> </div>
+</div>
 </div>
 <div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 24px;" ></div>
 </div>
@@ -836,6 +845,7 @@ function set_nmodes() {
 	var nmodes={}
 	var prLlibrePrTotalscale=d3.scale.quantize().domain([0.47,0.66]).range(["0","1","2","3","4","5","6"]);
 	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invvisitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
 	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6"]);
 	//var impactscale=d3.scale.quantize().domain([5.3,9]).range(["0","1","2","3","4","5","6","7","8","9"]);
 	var numericfoci=make_areas(7,1);
@@ -878,29 +888,32 @@ function set_nmodes() {
 			  		  '10' :  'J'
 			 }
 	
-
-	nmodes["prLlibrePrTotal"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
-		};
-	nmodes["visitesTotal"]=
-		{ foci:       catorfoci,
-		  translate : function(d) { return visitesTotalscale(d["visites"]) }
-		};
-	nmodes["prTotal"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
-		};
 	nmodes["districtes"]=
 		{ foci:       mapfoci,
 		  translate : function(d) { 
 				return districtemap[d.idDistricte] }
 		};
+	nmodes["visitesTotal"]=
+		{ foci:       catorfoci,
+		  translate : function(d) { return visitesTotalscale(d["visites"]) }
+		};
+
 	nmodes["visDistrictes"]=
 		{ foci:       mapVisitfoci,
 		  translate : function(d) { 
-				return (districteVismap[d.idDistricte]+visitesTotalscale(d["visites"])) }
+				return (districteVismap[d.idDistricte]+invvisitesTotalscale(d["visites"])) }
 		};
+	nmodes["prLlibrePrTotal"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
+		};
+	
+	nmodes["prTotal"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	
+	
 
 	/*
 	nmodes["score"]=
@@ -1233,28 +1246,27 @@ $("#background").on("click",function(e) {
 function getDistrColor(distr){
 	switch(distr){
 		case 1:
-		return "#CEFCFA";
+		return "#485975";
 		case 2:
-		return "#AAFD4D";
+		return "#E396B2";
 		case 3:
-		return "#E5E84A";
+		return "#0092DD";
 		case 4:
-		return "#D3751D";
+		return "#F4F54B";
 		case 5:
-		return "#FF1111";
+		return "#186E05";
 		case 6:
-		return "#12355B";
+		return "#DA251C";
 		case 7:
-		return "#420039";
+		return "#FF9E00";
 		case 8:
-		return "#D72638";
+		return "#59E450";
 		case 9:
-		return "#FF570A";
+		return "#8F5645";
 		case 10:
-		return "#820263";
+		return "#C0A264";
 	}
 }
-
 d3.csv("biblio.csv",function(d) { 
 			_.each(["idDistricte","visites","prestecs","prLlibresPrTotal"], function(e,i) {
 				d[e]=parseFloat(d[e]);
