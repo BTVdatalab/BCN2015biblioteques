@@ -578,38 +578,12 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
 
 
-<div class="slide" id="prLlibrePrTotal">
- <h2>pr. Llibre / pr. Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
- </div>
-</div>
-
-
-
-<div class="slide" id="visitesTotal">
- <h2>Visites Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
- </div>
-</div>
-
-
-<div class="slide" id="prTotal">
- <h2>Prestecs Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
- </div>
-</div>
 <div class="slide" id="districtes">
  <h2>Districtes</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
- 
+
  </div>
- 	
+  
     <div class="label" style="left: 10%; top: 72%;">Sants-Montjuïc</div>
     <div class="label" style="left: 35.53%; top: 27.64%;">Gràcia</div>
     <div class="label" style="left: 31.9%;top: 52.35%;">Eixample</div>
@@ -626,19 +600,84 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <br/>
  </div>
 </div>
+
+<div class="slide" id="bibHab">
+ <h2>Biblioteques per 100.000 habitants</h2>
+ <div class="label" style="left:0%; top:63.35%;">20</div>
+ <div class="label" style="left:85%; top:63.35%;">700</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+<div class="slide" id="visitesTotal">
+ <h2>Visites Totals</h2>
+ <div class="etiquetes">
+ <div class="label" style="left:0%; top:63.35%;">Menys Visites</div>
+ <div class="label" style="left:85%; top:63.35%;">Més Visites</div>
+</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
 <div class="slide" id="visDistrictes">
  <h2>Visites Biblio per districtes</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
- 
- </div>
- 	
-    
- 
-    
+ </div>  
  <div class="bu">Companies and team leaders come from 13 different european countries.
  <br/>
  </div>
 </div>
+
+<div class="slide" id="prTotal">
+ <h2>Prèstecs Totals</h2>
+ <div class="label" style="left:0%; top:63.35%;">Menys Prèstecs</div>
+ <div class="label" style="left:85%; top:63.35%;">Més Prèstecs</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+<div class="slide" id="prTotalDis">
+ <h2>Prèstecs Totals per distrcite</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ </div>  
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+<div class="slide" id="prLlibres">
+ <h2>pr. Llibres</h2>
+ <div class="label" style="left:0%; top:63.35%;">20</div>
+ <div class="label" style="left:85%; top:63.35%;">700</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+<div class="slide" id="prLlibresDis">
+ <h2>pr. Llibres per Districte</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ </div>  
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+
+<div class="slide" id="prLlibrePrTotal">
+ <h2>pr. Llibre / pr. Totals</h2>
+ <div class="label" style="left:0%; top:63.35%;">20</div>
+ <div class="label" style="left:85%; top:63.35%;">700</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+<div class="slide" id="prLlibreVis">
+ <h2>pr. Llibre per Visita</h2>
+ <div class="label" style="left:0%; top:63.35%;">20</div>
+ <div class="label" style="left:85%; top:63.35%;">700</div>
+ <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ </div>
+</div>
+
+
 <!--
 <div class="slide" id="country">
  <h2>From all over Europe</h2>
@@ -912,7 +951,27 @@ function set_nmodes() {
 		{ foci:       numericfoci,
 		  translate : function(d) { return prTotalscale(d["prestecs"]) }
 		};
-	
+	nmodes["bibHab"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	nmodes["prTotalDis"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	nmodes["prLlibresDis"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	nmodes["prLlibres"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	nmodes["prLlibreVis"]=
+		{ foci:       numericfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+
 	
 
 	/*
