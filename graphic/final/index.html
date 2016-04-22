@@ -617,6 +617,19 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <br/>
  </div>
 </div>
+<div class="slide" id="visDistrictes">
+ <h2>Visites Biblio per districtes</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ 
+ </div>
+ 	
+    
+ 
+    
+ <div class="bu">Companies and team leaders come from 13 different european countries.
+ <br/>
+ </div>
+</div>
 <!--
 <div class="slide" id="country">
  <h2>From all over Europe</h2>
@@ -822,14 +835,16 @@ function make_areas(cols,rows) {
 function set_nmodes() {
 	var nmodes={}
 	var prLlibrePrTotalscale=d3.scale.quantize().domain([0.47,0.66]).range(["0","1","2","3","4","5","6"]);
-	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6"]);
+	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
 	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6"]);
 	//var impactscale=d3.scale.quantize().domain([5.3,9]).range(["0","1","2","3","4","5","6","7","8","9"]);
 	var numericfoci=make_areas(7,1);
+	var catorfoci=make_areas(14,1);
 	//var dualfoci=make_areas(5,1);
 	//var threefoci=make_areas(3,1);
 	//var ninefoci=make_areas(5,5);
 	var mapfoci=make_areas(7,7);
+	var mapVisitfoci=make_areas(10,14);
 	/*
 	var ninemap= { 'YNN' : 'C0', // agribusiness 
 		       'NYN' : 'A3', // smartcity
@@ -851,6 +866,17 @@ function set_nmodes() {
 			  		  '9' :  'F2',
 			  		  '10' :  'E5'
 			 }
+	var districteVismap= { '1' :  'A',
+	                  '2' :  'B',
+			  		  '3' :  'C',
+			  		  '4' :  'D',
+			  		  '5' :  'E',
+			          '6' :  'F',
+			  		  '7' :  'G',
+			  		  '8' :  'H',
+			  		  '9' :  'I',
+			  		  '10' :  'J'
+			 }
 	
 
 	nmodes["prLlibrePrTotal"]=
@@ -858,7 +884,7 @@ function set_nmodes() {
 		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
 		};
 	nmodes["visitesTotal"]=
-		{ foci:       numericfoci,
+		{ foci:       catorfoci,
 		  translate : function(d) { return visitesTotalscale(d["visites"]) }
 		};
 	nmodes["prTotal"]=
@@ -870,6 +896,12 @@ function set_nmodes() {
 		  translate : function(d) { 
 				return districtemap[d.idDistricte] }
 		};
+	nmodes["visDistrictes"]=
+		{ foci:       mapVisitfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+visitesTotalscale(d["visites"])) }
+		};
+
 	/*
 	nmodes["score"]=
 		{ foci:       numericfoci,
@@ -1089,7 +1121,7 @@ function collide(node) {
 
 
 // http://stackoverflow.com/questions/17671252/d3-create-a-continous-color-scale-with-many-strings-inputs-for-the-range-and-dy 
-
+/*
 function heatmapColor(colors,domain) {
 
 	var heatmapColor = d3.scale.linear()
@@ -1100,14 +1132,15 @@ function heatmapColor(colors,domain) {
 	var f= function(v) { return heatmapColor(c(v)) }
 
 	return f
-}
+}*/
+
 
 //
-var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[1,10])
+//var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[1,10])
 
-// heatmap=heatmapColor(["#990033","#f9b822","#f9b822"],[20,30]);
+//var heatmap=heatmapColor(["#990033","#f9b822","#f9b822"],[1,10]);
      
-// heatmap=heatmapColor(["#990033","#f9a000","#ff5500"],[20,30])
+//var heatmap=heatmapColor(["#990033","#f9a000","#ff5500"],[1,10])
 
 function makeURL(vals) {
 	var u=[];
@@ -1197,6 +1230,30 @@ $("#background").on("click",function(e) {
 	e.preventDefault();
 });
 */
+function getDistrColor(distr){
+	switch(distr){
+		case 1:
+		return "#CEFCFA";
+		case 2:
+		return "#AAFD4D";
+		case 3:
+		return "#E5E84A";
+		case 4:
+		return "#D3751D";
+		case 5:
+		return "#FF1111";
+		case 6:
+		return "#12355B";
+		case 7:
+		return "#420039";
+		case 8:
+		return "#D72638";
+		case 9:
+		return "#FF570A";
+		case 10:
+		return "#820263";
+	}
+}
 
 d3.csv("biblio.csv",function(d) { 
 			_.each(["idDistricte","visites","prestecs","prLlibresPrTotal"], function(e,i) {
@@ -1207,7 +1264,7 @@ d3.csv("biblio.csv",function(d) {
 	function(error,rows) {
 	_.each(rows, function(n) {
 		n.radius=5;
-		n.fill=heatmap(n["idDistricte"]);
+		n.fill=getDistrColor(n["idDistricte"]);
 		n=configure_node(n);
 		nodes.push(n);
 		if (global.startwith && (global.follow == false) && (n['biblioteca'].toLowerCase().indexOf(global.startwith.f)==0)) {
