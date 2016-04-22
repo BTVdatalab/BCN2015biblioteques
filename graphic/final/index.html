@@ -83,6 +83,8 @@ h2  {
 	position: absolute;
 	top: 20px;
 	color: #777;
+  width: 100%;
+  text-align: center;
 }
 
 .invisible { display: none; } 
@@ -106,7 +108,7 @@ z-index:
 	max-width: 780px;	
 	width: 100%;
 	height: 40px;
-	bottom: -342px;
+	bottom: -400px;
 	position: relative;
 }
 
@@ -551,7 +553,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div style="max-width: 800px; display: inline-block; text-align: left;">
 </div>
 
-<div style="position: relative; height: 420px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
+<div style="position: relative; height: 500px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
 <div id="background" style="width: 100%; max-width: 800px; height: 400px">
 </div>
 <div id="info" style="color: #a0a0a0; font-size:18px; text-align: center; z-index:1">
@@ -571,7 +573,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
   <p style="font-size:80%">Aquest interactiu està basat en el treball de  <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a> i <a href="http://speedupeurope.eu">Speed Europe</a>. Pots agafar el codi obert desde el <a href="http://githhub.com">Github</a> del BTV Datalab.</p> </div>
 </div>
 </div>
-<div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 24px;" ></div>
+<div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 104px;" ></div>
 </div>
 <div class="invisible">
 
@@ -579,11 +581,11 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
 
 <div class="slide" id="districtes">
- <h2>Districtes</h2>
+ <h2>Biblioteques per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
 
  </div>
-  
+    <div class="districtes_labels" style="top:60px;">
     <div class="label" style="left: 10%; top: 72%;">Sants-Montjuïc</div>
     <div class="label" style="left: 35.53%; top: 27.64%;">Gràcia</div>
     <div class="label" style="left: 31.9%;top: 52.35%;">Eixample</div>
@@ -594,7 +596,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
     <div class="label" style="left: 37.65%; top: 72.92%;">Ciutat Vella</div> 
     <div class="label" style="left: 58.65%; top: 16.21%;">Nou Barris</div>
     <div class="label" style="left: 76.4%; top: 28.64%;">Sant Andreu</div>
- 
+    </div>
     
  <div class="bu">Companies and team leaders come from 13 different european countries.
  <br/>
@@ -603,25 +605,26 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
 <div class="slide" id="bibHab">
  <h2>Biblioteques per 100.000 habitants</h2>
- <div class="label" style="left:0%; top:63.35%;">20</div>
- <div class="label" style="left:85%; top:63.35%;">700</div>
+ <div class="label" style="left:0%; top:63.35%;">2</div>
+ <div class="label" style="left:50%; top:63.35%;">3</div>
+ <div class="label" style="left:100%; top:63.35%;">4</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
 <div class="slide" id="visitesTotal">
- <h2>Visites Totals</h2>
+ <h2>Visites a biblioteques</h2>
  <div class="etiquetes">
- <div class="label" style="left:0%; top:63.35%;">Menys Visites</div>
- <div class="label" style="left:85%; top:63.35%;">Més Visites</div>
+ <div class="label" style="left:0%; top:63.35%;">Menys</div>
+ <div class="label" style="left:100%; top:63.35%;">Més</div>
 </div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
-<div class="slide" id="visDistrictes">
- <h2>Visites Biblio per districtes</h2>
- <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+<div class="slide" id="visDistrictes" style="height:400px">
+ <h2>Visites a biblioteques per districte</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 306px; ">
  </div>  
  <div class="bu">Companies and team leaders come from 13 different european countries.
  <br/>
@@ -629,31 +632,33 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 </div>
 
 <div class="slide" id="prTotal">
- <h2>Prèstecs Totals</h2>
- <div class="label" style="left:0%; top:63.35%;">Menys Prèstecs</div>
- <div class="label" style="left:85%; top:63.35%;">Més Prèstecs</div>
+ <h2>Préstec bibliotecari</h2>
+ <div class="label" style="left:0%; top:63.35%;">Menys</div>
+ <div class="label" style="left:100%; top:63.35%;">Més</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
 <div class="slide" id="prTotalDis">
- <h2>Prèstecs Totals per distrcite</h2>
+ <h2>Préstec bibliotecari per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  </div>  
+ <div class="label" style="left:0%; top:63.35%;">Menys</div>
+ <div class="label" style="left:100%; top:63.35%;">Més</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
 <div class="slide" id="prLlibres">
- <h2>pr. Llibres</h2>
- <div class="label" style="left:0%; top:63.35%;">20</div>
- <div class="label" style="left:85%; top:63.35%;">700</div>
+ <h2>Prèstec de llibres </h2>
+ <div class="label" style="left:0%; top:63.35%;">Menys</div>
+ <div class="label" style="left:100%; top:63.35%;">Més</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
 <div class="slide" id="prLlibresDis">
- <h2>pr. Llibres per Districte</h2>
+ <h2>Prèstec de llibres per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  </div>  
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
@@ -662,17 +667,19 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
 
 <div class="slide" id="prLlibrePrTotal">
- <h2>pr. Llibre / pr. Totals</h2>
- <div class="label" style="left:0%; top:63.35%;">20</div>
- <div class="label" style="left:85%; top:63.35%;">700</div>
+ <h2>Per cada 10 préstecs, són llibres:</h2>
+ <div class="label" style="left:0%; top:63.35%;">2</div>
+ <div class="label" style="left:50%; top:63.35%;">3</div>
+ <div class="label" style="left:100%; top:63.35%;">4</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
 
 <div class="slide" id="prLlibreVis">
- <h2>pr. Llibre per Visita</h2>
- <div class="label" style="left:0%; top:63.35%;">20</div>
- <div class="label" style="left:85%; top:63.35%;">700</div>
+ <h2>Per cada 10 visites, llibres que es presten:</h2>
+ <div class="label" style="left:0%; top:63.35%;">2</div>
+ <div class="label" style="left:50%; top:63.35%;">3</div>
+ <div class="label" style="left:100%; top:63.35%;">4</div>
  <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
  </div>
 </div>
@@ -882,18 +889,26 @@ function make_areas(cols,rows) {
 // <>
 function set_nmodes() {
 	var nmodes={}
-	var prLlibrePrTotalscale=d3.scale.quantize().domain([0.47,0.66]).range(["0","1","2","3","4","5","6"]);
+	var prLlibrePrTotalscale=d3.scale.quantize().domain([45,75]).range(["0","1","2"]);
+	var habscale=d3.scale.quantize().domain([1.5,4.5]).range(["0","1","2"]);
+	var LlibreVisscale=d3.scale.quantize().domain([0.15,0.55]).range(["0","1","2", "3"]);
 	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
 	var invvisitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
-	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6"]);
+	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invprTotalscale=d3.scale.quantize().domain([12000,245000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
+	var prLlibrescale=d3.scale.quantize().domain([5000,160000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invprLlibrescale=d3.scale.quantize().domain([5000,160000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
+
 	//var impactscale=d3.scale.quantize().domain([5.3,9]).range(["0","1","2","3","4","5","6","7","8","9"]);
 	var numericfoci=make_areas(7,1);
+	var trinumericfoci=make_areas(3,1);
+	var quanumericfoci=make_areas(4,1);
 	var catorfoci=make_areas(14,1);
 	//var dualfoci=make_areas(5,1);
 	//var threefoci=make_areas(3,1);
 	//var ninefoci=make_areas(5,5);
 	var mapfoci=make_areas(7,7);
-	var mapVisitfoci=make_areas(10,14);
+	var mapCatfoci	=make_areas(10,14);
 	/*
 	var ninemap= { 'YNN' : 'C0', // agribusiness 
 		       'NYN' : 'A3', // smartcity
@@ -938,38 +953,40 @@ function set_nmodes() {
 		};
 
 	nmodes["visDistrictes"]=
-		{ foci:       mapVisitfoci,
+		{ foci:       mapCatfoci,
 		  translate : function(d) { 
 				return (districteVismap[d.idDistricte]+invvisitesTotalscale(d["visites"])) }
 		};
 	nmodes["prLlibrePrTotal"]=
-		{ foci:       numericfoci,
+		{ foci:       trinumericfoci,
 		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
 		};
 	
 	nmodes["prTotal"]=
-		{ foci:       numericfoci,
+		{ foci:       catorfoci,
 		  translate : function(d) { return prTotalscale(d["prestecs"]) }
 		};
 	nmodes["bibHab"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		{ foci:       trinumericfoci,
+		  translate : function(d) { return habscale	(d["bibcentmhab"]) }
 		};
 	nmodes["prTotalDis"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		{ foci:       mapCatfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+invprTotalscale(d["prestecs"])) }
 		};
 	nmodes["prLlibresDis"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		{ foci:       mapCatfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+invprLlibrescale(d["prLlibre"])) }
 		};
 	nmodes["prLlibres"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		{ foci:       catorfoci,
+		  translate : function(d) { return prLlibrescale(d["prLlibre"]) }
 		};
 	nmodes["prLlibreVis"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		{ foci:       quanumericfoci,
+		  translate : function(d) { return LlibreVisscale(d["prLlibreVisita"]) }
 		};
 
 	
