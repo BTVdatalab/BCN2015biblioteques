@@ -1135,13 +1135,13 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 		 f=f+"<br/>Prestecs llibres: "+d["prLlibre"];
 	 	break;
 	 	case "prLlibrePrTotal":
-	 		 f=f+"<br/>Prestecs Llibres/Totals: "+d["prLlibresPrTotal"]/10;
+	 		 f=f+"<br/>Prestecs Llibres/Totals: "+(d["prLlibresPrTotal"]/10).toFixed(2);
 	 	break;
 	 	case "bibHab":
 	 		 f=f+"<br/>Bibl. per 100k hab.: "+d["bibcentmhab"];
 	 	break;
 	 	case "prLlibreVis":
-	 		 f=f+"<br/>Prestec Llibres per vis.: "+d["prLlibreVisita"];
+	 		 f=f+"<br/>Prestec Llibres per vis.: "+(d["prLlibreVisita"]*10).toFixed(2);
 	 	break;
 	 }
 
