@@ -1106,7 +1106,7 @@ var svg = d3.select("div#frame").append("svg")
 	 });
 var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 var f='<strong>'+d["biblioteca"]+"</strong>  <br/>"+d["districte"];
-
+	 f=f+"<br/>"	+ d["infoExtra"];
 	 /*
 	 if (d["title"]>"") {
 	 	f=f+" - "+d["title"];
@@ -1121,9 +1121,31 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 }
 	 f=f+"</span>";
 	 */
-	 
+	 switch(global.mode){
+	 	case "visitesTotal":
+	 	case "visDistrictes":
+	 		 f=f+"<br/>Visites: "+d["visites"];
+	 	break;
+	 	case "prTotal":
+	 	case "prTotalDis":
+	 		 f=f+"<br/>Prestecs: "+d["prestecs"];
+	 	break;
+	 	case "prLlibres":
+	 	case "prLlibresDis":
+	 		 f=f+"<br/>Prestecs llibres: "+d["prLlibre"];
+	 	break;
+	 	case "prLlibrePrTotal":
+	 		 f=f+"<br/>Prestecs Llibres/Totals: "+d["prLlibresPrTotal"]/10;
+	 	break;
+	 	case "bibHab":
+	 		 f=f+"<br/>Bibl. per 100k hab.: "+d["bibcentmhab"];
+	 	break;
+	 	case "prLlibreVis":
+	 		 f=f+"<br/>Prestec Llibres per vis.: "+d["prLlibreVisita"];
+	 	break;
+	 }
 
-	 f=f+"<br/>"	+ d["infoExtra"];
+	 
 	 return(f); 
 	 });
 
