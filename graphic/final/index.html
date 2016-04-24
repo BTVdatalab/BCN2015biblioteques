@@ -598,7 +598,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
     <div class="label" style="left: 76.4%; top: 28.64%;">Sant Andreu</div>
     </div>
     
- <div class="bu">Companies and team leaders come from 13 different european countries.
+ <div class="bu">Hi ha 40 biblioteques i 10 districtes.
  <br/>
  </div>
 </div>
@@ -608,7 +608,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <div class="label" style="left:0%; top:63.35%;">2</div>
  <div class="label" style="left:50%; top:63.35%;">3</div>
  <div class="label" style="left:100%; top:63.35%;">4</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu"> 
  </div>
 </div>
 
@@ -618,7 +618,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <div class="label" style="left:0%; top:63.35%;">Menys</div>
  <div class="label" style="left:100%; top:63.35%;">Més</div>
 </div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">Els valors oscil.len entre 25.000 i 730.000. <br/>Visites presencials, no inclouen les virtuals 
  </div>
 </div>
 
@@ -626,8 +626,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Visites a biblioteques per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 306px; ">
  </div>  
- <div class="bu">Companies and team leaders come from 13 different european countries.
- <br/>
+ <div class="bu">Els valors oscil.len entre 25.000 i 730.000. <br/>Visites presencials, no inclouen les virtuals 
  </div>
 </div>
 
@@ -635,7 +634,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Préstec bibliotecari</h2>
  <div class="label" style="left:0%; top:63.35%;">Menys</div>
  <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">Préstec de llibres, dvds, cds i altres <br/>Els valors oscil.len entre 13.500 i 244.000 
  </div>
 </div>
 
@@ -645,7 +644,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  </div>  
  <div class="label" style="left:0%; top:63.35%;">Menys</div>
  <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">Préstec de llibres, dvds, cds i altres <br/>Els valors oscil.len entre 13.500 i 244.000 <br/> Distribució vertical segons número de districte
  </div>
 </div>
 
@@ -653,7 +652,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Prèstec de llibres </h2>
  <div class="label" style="left:0%; top:63.35%;">Menys</div>
  <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">Els valors oscil.len entre 6400  i   153.651. 
  </div>
 </div>
 
@@ -661,7 +660,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Prèstec de llibres per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  </div>  
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">Els valors oscil.len entre 6400  i   153.651. <br/>Distribució vertical  segons número de districte
  </div>
 </div>
 
@@ -671,7 +670,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <div class="label" style="left:0%; top:63.35%;">2</div>
  <div class="label" style="left:50%; top:63.35%;">3</div>
  <div class="label" style="left:100%; top:63.35%;">4</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">
  </div>
 </div>
 
@@ -680,7 +679,7 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <div class="label" style="left:0%; top:63.35%;">2</div>
  <div class="label" style="left:50%; top:63.35%;">3</div>
  <div class="label" style="left:100%; top:63.35%;">4</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <div class="bu">
  </div>
 </div>
 
@@ -1105,9 +1104,9 @@ var svg = d3.select("div#frame").append("svg")
 		  d={ x: a[0], y: a[1]};
 		  // console.log('<div class="label" style="left:'+((d.x*100/settings.width)+"").substr(0,5)+'%; top:'+((d.y*100/settings.height)+"").substr(0,5)+'%;"> </div>');
 	 });
-
 var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-	 var f='<strong>'+d["biblioteca"]+"</strong>  <br/>"+d["districte"] ;
+	 var f='<strong>'+d["biblioteca"]+"</strong>  <br/>"+d["districte"];
+
 	 /*
 	 if (d["title"]>"") {
 	 	f=f+" - "+d["title"];
@@ -1122,6 +1121,9 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 }
 	 f=f+"</span>";
 	 */
+	 
+
+	 f=f+"<br/>"	+ d["infoExtra"];
 	 return(f); 
 	 });
 

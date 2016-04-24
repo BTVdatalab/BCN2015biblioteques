@@ -3,38 +3,38 @@ idDistricte,districte,biblioteca,visites,prestecs,prLlibre,habBiblio,pobl,numBib
 1,Ciutat Vella,Biblioteca Francesca Bonnemaison,144458,114844,62853,25028.75 ,100115.00 ,4,3.995,54.73,0.79,0.44,
 1,Ciutat Vella,Biblioteca Gòtic-Andreu Nin,85241,52408,25302,25028.75 ,100115.00 ,4,3.995,48.28,0.61,0.30,
 1,Ciutat Vella,Biblioteca Sant Pau-Santa Creu ,195987,89918,50596,25028.75 ,100115.00 ,4,3.995,56.27,0.46,0.26,
-2,Eixample,Biblioteca Esquerra de l'Eix.-A. Centelles (1),331382,189834,117243,43926.33 ,263558.00 ,6,2.277,61.76,0.57,0.35,
-2,Eixample,Biblioteca Fort Pienc  (2),89383,45543,2563,43926.33 ,263558.00 ,6,2.277,56.28,0.51,0.29,Tancada 16/6 – 31/12
-2,Eixample,Biblioteca Joan Miró (3),43936,15574,9114,43926.33 ,263558.00 ,6,2.277,58.52,0.35,0.21,Tancada 1/1 – 8/10
-2,Eixample,Biblioteca Sagrada Família (4),322837,182223,120082,43926.33 ,263558.00 ,6,2.277,65.90,0.56,0.37,Tancada 1/8 – 20/9
+2,Eixample,Biblioteca Esquerra de l'Eix.-A. Centelles,331382,189834,117243,43926.33 ,263558.00 ,6,2.277,61.76,0.57,0.35,
+2,Eixample,Biblioteca Fort Pienc,89383,45543,2563,43926.33 ,263558.00 ,6,2.277,56.28,0.51,0.29,Tancada 16/6 – 31/12
+2,Eixample,Biblioteca Joan Miró,43936,15574,9114,43926.33 ,263558.00 ,6,2.277,58.52,0.35,0.21,Tancada 1/1 – 8/10
+2,Eixample,Biblioteca Sagrada Família,322837,182223,120082,43926.33 ,263558.00 ,6,2.277,65.90,0.56,0.37,Tancada 1/8 – 20/9
 2,Eixample,Biblioteca Sant Antoni-Joan Oliver,143175,96993,57386,43926.33 ,263558.00 ,6,2.277,59.17,0.68,0.40,
 2,Eixample,Biblioteca Sofia Barat,101088,71462,42371,43926.33 ,263558.00 ,6,2.277,59.29,0.71,0.42,
 3,Sants-Montjuïc,Biblioteca Francesc Candel,146186,93846,46834,60252.33 ,180757.00 ,3,1.660,49.91,0.64,0.32,
 3,Sants-Montjuïc,Biblioteca Poble-Sec Francesc Boix,9767,68878,39948,60252.33 ,180757.00 ,3,1.660,58.00,0.71,0.41,
 3,Sants-Montjuïc,Biblioteca Vapor Vell,290584,148613,91899,60252.33 ,180757.00 ,3,1.660,61.84,0.51,0.32,
 4,Les Corts,Biblioteca Can Rosés,111632,56538,32929,40765.00 ,81530.00 ,2,2.453,58.24,0.51,0.29,
-4,Les Corts,Biblioteca Les Corts-Miquel Llongueras (5),11424,50384,32271,40765.00 ,81530.00 ,2,2.453,64.05,0.44,0.28,Tancada 1/7 – 31/10
+4,Les Corts,Biblioteca Les Corts-Miquel Llongueras,11424,50384,32271,40765.00 ,81530.00 ,2,2.453,64.05,0.44,0.28,Tancada 1/7 – 31/10
 5,Sarrià-Sant Gervasi,Biblioteca Clarà,84444,67067,38256,48944.67 ,146834.00 ,3,2.043,57.04,0.79,0.45,
 5,Sarrià-Sant Gervasi,Biblioteca Collserola-Josep Miracle,28317,25725,13472,48944.67 ,146834.00 ,3,2.043,52.37,0.91,0.48,
-5,Sarrià-Sant Gervasi,Biblioteca Sant Gervasi-Joan Maragall (6),230954,107936,6947,48944.67 ,146834.00 ,3,2.043,64.36,0.47,0.30,
+5,Sarrià-Sant Gervasi,Biblioteca Sant Gervasi-Joan Maragall,230954,107936,6947,48944.67 ,146834.00 ,3,2.043,64.36,0.47,0.30,
 6,Gràcia,Biblioteca Jaume Fuster,731746,244183,153651,40133.67 ,120401.00 ,3,2.492,62.92,0.33,0.21,
 6,Gràcia,Biblioteca Vallcarca i els Penitents ,60366,44001,23757,40133.67 ,120401.00 ,3,2.492,53.99,0.73,0.39,
 6,Gràcia,Biblioteca Vila de Gràcia,212663,124943,73701,40133.67 ,120401.00 ,3,2.492,58.99,0.59,0.35,
 7,Horta-Guinardó,Biblioteca El Carmel-Juan Marsé,129883,94716,49154,41639.75 ,166559.00 ,4,2.402,51.90,0.73,0.38,
 7,Horta-Guinardó,Biblioteca Guinardó-Mercè Rodoreda,206597,117162,69513,41639.75 ,166559.00 ,4,2.402,59.33,0.57,0.34,
 7,Horta-Guinardó,Biblioteca Horta-Can Mariner,183184,9873,59658,41639.75 ,166559.00 ,4,2.402,60.43,0.54,0.33,
-7,Horta-Guinardó,Biblioteca Montbau-Albert Pérez Baró (7),2662,1491,9088,41639.75 ,166559.00 ,4,2.402,60.95,0.56,0.34,Tancada 1/1 – 1/7
+7,Horta-Guinardó,Biblioteca Montbau-Albert Pérez Baró,2662,1491,9088,41639.75 ,166559.00 ,4,2.402,60.95,0.56,0.34,Tancada 1/1 – 1/7
 8,Nou Barris,Biblioteca Canyelles,25196,13493,6408,32929.60 ,164648.00 ,5,3.037,47.49,0.54,0.25,
 8,Nou Barris,Biblioteca Les Roquetes ,86139,43144,23145,32929.60 ,164648.00 ,5,3.037,53.65,0.50,0.27,
 8,Nou Barris,Biblioteca Nou Barris,226471,102686,66086,32929.60 ,164648.00 ,5,3.037,64.36,0.45,0.29,
 8,Nou Barris,Biblioteca Vilapicina i la Torre Llobeta ,147571,99502,58436,32929.60 ,164648.00 ,5,3.037,58.73,0.67,0.40,
 8,Nou Barris,Biblioteca Zona Nord,70904,42695,26258,32929.60 ,164648.00 ,5,3.037,61.50,0.60,0.37,
 9,Sant Andreu,Biblioteca Bon Pastor,80169,40347,20776,36623.50 ,146494.00 ,4,2.730,51.49,0.50,0.26,
-9,Sant Andreu,Biblioteca Ignasi Iglésias-Can Fabra (8),407587,186152,11927,36623.50 ,146494.00 ,4,2.730,64.07,0.46,0.29,
+9,Sant Andreu,Biblioteca Ignasi Iglésias-Can Fabra,407587,186152,11927,36623.50 ,146494.00 ,4,2.730,64.07,0.46,0.29,
 9,Sant Andreu,Biblioteca La Sagrera-Marina Clotet,96175,63623,36256,36623.50 ,146494.00 ,4,2.730,56.99,0.66,0.38,
-9,Sant Andreu,Biblioteca Trinitat Vella - J.Barbero (9),86269,23695,13956,36623.50 ,146494.00 ,4,2.730,58.90,0.27,0.16,
-10,Sant Martí,Biblioteca Camp de l'Arpa (10),203245,130278,7254,38943.17 ,233659.00 ,6,2.568,55.68,0.64,0.36,
-10,Sant Martí,Biblioteca El Clot-Josep Benet (11),161378,8366,52315,38943.17 ,233659.00 ,6,2.568,62.53,0.52,0.32,
+9,Sant Andreu,Biblioteca Trinitat Vella - J.Barbero,86269,23695,13956,36623.50 ,146494.00 ,4,2.730,58.90,0.27,0.16,
+10,Sant Martí,Biblioteca Camp de l'Arpa,203245,130278,7254,38943.17 ,233659.00 ,6,2.568,55.68,0.64,0.36,
+10,Sant Martí,Biblioteca El Clot-Josep Benet,161378,8366,52315,38943.17 ,233659.00 ,6,2.568,62.53,0.52,0.32,
 10,Sant Martí,Biblioteca Poblenou-Manuel Arranz,186214,123247,72364,38943.17 ,233659.00 ,6,2.568,58.71,0.66,0.39,
 10,Sant Martí,Biblioteca Ramon d'Alòs-Moner,37695,29327,18346,38943.17 ,233659.00 ,6,2.568,62.56,0.78,0.49,
 10,Sant Martí,Biblioteca Sant Martí de Provençals,57246,43783,28168,38943.17 ,233659.00 ,6,2.568,64.34,0.76,0.49,
