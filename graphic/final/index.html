@@ -1174,24 +1174,24 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 switch(global.mode){
 	 	case "visitesTotal":
 	 	case "visDistrictes":
-	 		 f=f+"<br/>Visites: "+d["visites"];
+	 		 f=f+"<br/>Visites: "+d["visitesMostrar"];
 	 	break;
 	 	case "prTotal":
 	 	case "prTotalDis":
-	 		 f=f+"<br/>Préstecs: "+d["prestecs"];
+	 		 f=f+"<br/>Préstecs: "+d["prestecsMostrar"];
 	 	break;
 	 	case "prLlibres":
 	 	case "prLlibresDis":
-	 		 f=f+"<br/>Llibres prestats: "+d["prLlibre"];
+	 		 f=f+"<br/>Llibres prestats: "+d["prLlibreMostrar"];
 	 	break;
 	 	case "prLlibrePrTotal":
-	 		 f=f+"<br/>De cada 10 préstecs, "+(d["prLlibresPrTotal"]/10).toFixed(2)+" són llibres.";
+	 		 f=f+"<br/>De cada 10 préstecs, "+d["prLlibresPrTotalMostrar"]+" són llibres.";
 	 	break;
 	 	case "bibHab":
-	 		 f=f+"<br/>Bibl. per 100k hab.: "+d["bibcentmhab"];
+	 		 f=f+"<br/>Bibl. per 100k hab.: "+d["bibcentmhabMostrar"];
 	 	break;
 	 	case "prLlibreVis":
-	 		 f=f+"<br/>Per cada 10 visites, es presten "+(d["prLlibreVisita"]*10).toFixed(2)+" llibres.";
+	 		 f=f+"<br/>Per cada 10 visites, es presten "+d["prLlibreVisitaMostrar"]+" llibres.";
 	 	break;
 	 }
 
