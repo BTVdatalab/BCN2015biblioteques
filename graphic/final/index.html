@@ -81,7 +81,7 @@ h2  {
 	font-size: 28px;
 	letter-spacing: -1px;
 	position: absolute;
-	top: 20px;
+	top: 0px;
 	color: #777;
   width: 100%;
   text-align: center;
@@ -101,15 +101,16 @@ z-index:
 
 
 .bu {
-	position: absolute; 
-	left: 0px; 
-	color: rgb(85,85,85);
-	font-size: 18px; 
-	max-width: 780px;	
-	width: 100%;
-	height: 40px;
-	bottom: -400px;
-	position: relative;
+	position: absolute;
+    left: 0px;
+    color: rgb(187, 187, 187);
+    font-size: 18px;
+    max-width: 780px;
+    width: 100%;
+    height: 40px;
+    top: 65px;
+    text-align: center;
+    position: relative;
 }
 
 .slide {
@@ -226,6 +227,22 @@ a.grey:hover {
 
 #logo-div {
 	display: none;
+}
+
+.districtes_labels_numeros{
+    margin: 0px 40px;
+    margin-top: 400px;
+}
+
+.districtes_labels_numeros div {
+    width: 10%;
+    float: left;
+    position: relative;
+	text-align:center;
+	color: #888888;
+	background: #ffffff;
+	z-Index: 1;
+	opacity: .7;
 }
 
 </style>
@@ -564,13 +581,13 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 </span>
 <div id="infosign" style="display: inline-block; float: right">
 &#9432;
-  <div id="legende"><p>Cada cercle representa una biblioteca. El color correspon al districte.</p>
+  <div id="legende"><p>Cada cercle representa una biblioteca. El color varia segons el districte a què pertany.</p>
 
-  <p>Si poses el ratolí sobre el cercle obtindrás més informacó i si el cliques seguiràs la posició de la biblioteca per tota la visualització.</p>
+  <p>Si poses el ratolí sobre el cercle, sabràs quina és. Si el cliques, seguiràs la posició de la biblioteca al llarg de l’interactiu. Dins de cada franja, la posició del cercle segons el seu valor és aproximada.</p>
 
-  <p>Si vols pots <a target="_blank" href="embed.html">incrustar  </a>aquest interactiu a la teva pàgina web. 
-
-  <p style="font-size:80%">Aquest interactiu està basat en el treball de  <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a> i <a href="http://speedupeurope.eu">Speed Europe</a>. Pots agafar el codi obert desde el <a href="http://githhub.com">Github</a> del BTV Datalab.</p> </div>
+  <p style="font-size:80%">Aquest interactiu en <a href="http://d3js.org" target="_blank">d3.js</a> del <a href="https://twitter.com/btvdatalab" target="_blank"> BTVdatalab </a> està basat en el treball de <a href="https://twitter.com/btvdatalab" target="_blank">Michael Bostock</a> i de <a href="http://speedupeurope.eu" target="_blank">Martin Virtel/Speed Europe</a>, en codi dipositat a <a href="https://github.com/BTVdatalab/BCN2015biblioteques" target="_blank">Github</a>. Font de les dades: Biblioteques de Barcelona.</p> 
+  
+  </div>
 </div>
 </div>
 <div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 104px;" ></div>
@@ -586,28 +603,26 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 
  </div>
     <div class="districtes_labels" style="top:60px;">
-    <div class="label" style="left: 10%; top: 72%;">Sants-Montjuïc</div>
-    <div class="label" style="left: 35.53%; top: 27.64%;">Gràcia</div>
-    <div class="label" style="left: 31.9%;top: 52.35%;">Eixample</div>
-    <div class="label" style="left: 3%;top: 40.78%;">Les Corts</div> 
-    <div class="label" style="left: 16%; top: 18%;;">Sarrià - Sant Gervasi</div>
-    <div class="label" style="left: 46.15%; top: 32.92%;">Horta - Guinardó</div> 
-    <div class="label" style="left: 59.03%;top: 72.92%;">Sant Martí</div>
-    <div class="label" style="left: 37.65%; top: 72.92%;">Ciutat Vella</div> 
-    <div class="label" style="left: 58.65%; top: 16.21%;">Nou Barris</div>
-    <div class="label" style="left: 76.4%; top: 28.64%;">Sant Andreu</div>
+    <div class="label" style="left: 18%; top: 92%;">Sants-Montjuïc</div>
+    <div class="label" style="left: 47%; top: 47.64%;">Gràcia</div>
+    <div class="label" style="left: 46%;top: 72.35%;">Eixample</div>
+    <div class="label" style="left: 20%;top: 60.78%;">Les Corts</div> 
+    <div class="label" style="left: 30%; top: 38%;;">Sarrià - Sant Gervasi</div>
+    <div class="label" style="left: 56%; top: 52.92%;">Horta - Guinardó</div> 
+    <div class="label" style="left: 71.03%;top: 92.92%;">Sant Martí</div>
+    <div class="label" style="left: 43.65%; top: 92.92%;">Ciutat Vella</div> 
+    <div class="label" style="left: 72%; top: 36.21%;">Nou Barris</div>
+    <div class="label" style="left: 82%; top: 63%;">Sant Andreu</div>
     </div>
     
- <div class="bu">Hi ha 40 biblioteques i 10 districtes.
- <br/>
- </div>
+ <div class="bu">Hi ha 40 biblioteques i 10 districtes. </div>
 </div>
 
 <div class="slide" id="bibHab">
- <h2>Biblioteques per 100.000 habitants</h2>
- <div class="label" style="left:0%; top:63.35%;">2</div>
- <div class="label" style="left:50%; top:63.35%;">3</div>
- <div class="label" style="left:100%; top:63.35%;">4</div>
+ <h2>Biblioteques al districte per cada 100.000 habitants</h2>
+ <div class="label" style="left:18%; top:80%;">Dos</div>
+ <div class="label" style="left:47.5%; top:80%;">Tres</div>
+ <div class="label" style="right:18%; top:80%;">Quatre</div>
  <div class="bu"> 
  </div>
 </div>
@@ -615,26 +630,38 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div class="slide" id="visitesTotal">
  <h2>Visites a biblioteques</h2>
  <div class="etiquetes">
- <div class="label" style="left:0%; top:63.35%;">Menys</div>
- <div class="label" style="left:100%; top:63.35%;">Més</div>
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
 </div>
- <div class="bu">Els valors oscil.len entre 25.000 i 730.000. <br/>Visites presencials, no inclouen les virtuals 
- </div>
+ <div class="bu">Visites presencials, no inclouen les virtuals</div>
 </div>
 
 <div class="slide" id="visDistrictes" style="height:400px">
  <h2>Visites a biblioteques per districte</h2>
+
+ 
  <div class="text table" style="text-align: center; left: 247px; top: 306px; ">
  </div>  
- <div class="bu">Els valors oscil.len entre 25.000 i 730.000. <br/>Visites presencials, no inclouen les virtuals 
+ <div class="bu">Visites presencials, no inclouen les virtuals</div>
+  <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
  </div>
 </div>
 
 <div class="slide" id="prTotal">
  <h2>Préstec bibliotecari</h2>
- <div class="label" style="left:0%; top:63.35%;">Menys</div>
- <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">Préstec de llibres, dvds, cds i altres <br/>Els valors oscil.len entre 13.500 i 244.000 
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+ <div class="bu">Préstec de llibres, dvds, cds i altres 
  </div>
 </div>
 
@@ -642,43 +669,66 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  <h2>Préstec bibliotecari per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  </div>  
- <div class="label" style="left:0%; top:63.35%;">Menys</div>
- <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">Préstec de llibres, dvds, cds i altres <br/>Els valors oscil.len entre 13.500 i 244.000 <br/> Distribució vertical segons número de districte
+
+ <div class="bu">Préstec de llibres, dvds, cds i altres <br/> Distribució vertical segons número de districte</div>
+  <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
  </div>
-</div>
+ </div>
 
 <div class="slide" id="prLlibres">
- <h2>Prèstec de llibres </h2>
- <div class="label" style="left:0%; top:63.35%;">Menys</div>
- <div class="label" style="left:100%; top:63.35%;">Més</div>
- <div class="bu">Els valors oscil.len entre 6400  i   153.651. 
+ <h2>Préstec de llibres </h2>
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+ <div class="bu">
  </div>
 </div>
 
 <div class="slide" id="prLlibresDis">
- <h2>Prèstec de llibres per districte</h2>
+ <h2>Préstec de llibres per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
  </div>  
- <div class="bu">Els valors oscil.len entre 6400  i   153.651. <br/>Distribució vertical  segons número de districte
+ <div class="bu">Distribució vertical  segons número de districte
+ </div>
+   <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
  </div>
 </div>
 
 
 <div class="slide" id="prLlibrePrTotal">
- <h2>Per cada 10 préstecs, són llibres:</h2>
- <div class="label" style="left:0%; top:63.35%;">2</div>
- <div class="label" style="left:50%; top:63.35%;">3</div>
- <div class="label" style="left:100%; top:63.35%;">4</div>
+ <h2>De cada 10 préstecs, són llibres:</h2>
+ <div class="label" style="left:18%; top:80%;">Cinc</div>
+ <div class="label" style="left:48%; top:80%;">Sis</div>
+ <div class="label" style="right:16%; top:80%;">Set</div>
  <div class="bu">
  </div>
 </div>
 
 <div class="slide" id="prLlibreVis">
  <h2>Per cada 10 visites, llibres que es presten:</h2>
- <div class="label" style="left:0%; top:63.35%;">2</div>
- <div class="label" style="left:50%; top:63.35%;">3</div>
- <div class="label" style="left:100%; top:63.35%;">4</div>
+ <div class="label" style="left:15%; top:80%;">Dos</div>
+ <div class="label" style="left:35.5%; top:80%;">Tres</div>
+ <div class="label" style="right:35.5%; top:80%;">Quatre</div>
+ <div class="label" style="right:15%; top:80%;">Cinc</div>
  <div class="bu">
  </div>
 </div>
@@ -918,16 +968,16 @@ function set_nmodes() {
 		       'YYY' : 'C2', // smartcity + cleantech + agribusiness
 		       'NNN' : 'E4', // nothing at all
 		      }*/
-	var districtemap= { '1' :  'C5',
-	                  '2' :  'C3',
-			  		  '3' :  'A5',
-			  		  '4' :  'A2',
-			  		  '5' :  'B1',
-			          '6' :  'C2',
-			  		  '7' :  'D1',
-			  		  '8' :  'E1',
-			  		  '9' :  'F2',
-			  		  '10' :  'E5'
+	var districtemap= { '1' :  'D5',
+	                  '2' :  'D3',
+			  		  '3' :  'B5',
+			  		  '4' :  'B2',
+			  		  '5' :  'C1',
+			          '6' :  'D2',
+			  		  '7' :  'E1',
+			  		  '8' :  'F1',
+			  		  '9' :  'G2',
+			  		  '10' :  'F5'
 			 }
 	var districteVismap= { '1' :  'A',
 	                  '2' :  'B',
@@ -1128,20 +1178,20 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 	break;
 	 	case "prTotal":
 	 	case "prTotalDis":
-	 		 f=f+"<br/>Prestecs: "+d["prestecs"];
+	 		 f=f+"<br/>Préstecs: "+d["prestecs"];
 	 	break;
 	 	case "prLlibres":
 	 	case "prLlibresDis":
-	 		 f=f+"<br/>Prestecs llibres: "+d["prLlibre"];
+	 		 f=f+"<br/>Llibres prestats: "+d["prLlibre"];
 	 	break;
 	 	case "prLlibrePrTotal":
-	 		 f=f+"<br/>Prestecs Llibres/Totals: "+(d["prLlibresPrTotal"]/10).toFixed(2);
+	 		 f=f+"<br/>De cada 10 préstecs, "+(d["prLlibresPrTotal"]/10).toFixed(2)+" són llibres.";
 	 	break;
 	 	case "bibHab":
 	 		 f=f+"<br/>Bibl. per 100k hab.: "+d["bibcentmhab"];
 	 	break;
 	 	case "prLlibreVis":
-	 		 f=f+"<br/>Prestec Llibres per vis.: "+(d["prLlibreVisita"]*10).toFixed(2);
+	 		 f=f+"<br/>Per cada 10 visites, es presten "+(d["prLlibreVisita"]*10).toFixed(2)+" llibres.";
 	 	break;
 	 }
 
