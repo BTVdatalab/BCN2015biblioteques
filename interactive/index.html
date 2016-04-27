@@ -1,26 +1,71 @@
 <!DOCTYPE html>
-<head><title>SpeedUp Europe - The Winners</title>
+<head><title>Biblioteques BCN</title>
 <meta charset="utf-8">
-<meta property="og:title" content="SpeedUpEurope - The Winners" />
+<meta property="og:title" content="Biblioteques BCN" />
 <!-- facebook -->
-<meta property="og:description" content="See this interactive about the 100 startups that have been selected for funding." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://apps.opendatacity.de/speedupeurope/0.3/" />
-<meta property="og:image" content="http://apps.opendatacity.de/speedupeurope/0.3/screenshot.png" />
-<!-- twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@opendatacity">
-<meta name="twitter:creator" content="@mvtango">
-<meta name="twitter:title" content="SpeedUpEurope - The Winners">
-<meta name="twitter:description" content="See this interactive about the 100 startups that have been selected for funding.">
-<meta name="twitter:image:src" content="http://apps.opendatacity.de/speedupeurope/0.3/screenshot.png">
 
 <link rel='stylesheet' id='open-sans-css'  href='http://fonts.googleapis.com/css?family=Roboto:100italic,100,300italic,300,400italic,400,500italic,500,700italic,700,900italic,900;subset=latin%2Clatin-ext&#038;ver=3.8.1' type='text/css' media='all' />
 <link rel='stylesheet' id='fixed-google-abel-css'  href='http://fonts.googleapis.com/css?family=Abel&#038;ver=3.8.1' type='text/css' media='all' />
-<link rel="stylesheet" href="tooltip-styles.css">
-<link rel="alternate" type="application/json+oembed"
-  href="http://apps.opendatacity.de/speedupeurope/0.3/oembed.json"
-    title="SpeedUpEurope - The Winners - oEmbed" />
+<style>
+.d3-tip {
+  line-height: 1;
+  font-weight: normal;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #555;
+  border-radius: 2px;
+  pointer-events: none;
+  max-width: 300px;
+  border: 1px solid #555;
+  z-Index: 2;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
+</style>
 <style>
 
 
@@ -36,8 +81,10 @@ h2  {
 	font-size: 28px;
 	letter-spacing: -1px;
 	position: absolute;
-	top: 20px;
+	top: 0px;
 	color: #777;
+  width: 100%;
+  text-align: center;
 }
 
 .invisible { display: none; } 
@@ -54,15 +101,16 @@ z-index:
 
 
 .bu {
-	position: absolute; 
-	left: 0px; 
-	color: rgb(85,85,85);
-	font-size: 18px; 
-	max-width: 780px;	
-	width: 100%;
-	height: 40px;
-	bottom: -342px;
-	position: relative;
+	position: absolute;
+    left: 0px;
+    color: rgb(187, 187, 187);
+    font-size: 18px;
+    max-width: 780px;
+    width: 100%;
+    height: 40px;
+    top: 65px;
+    text-align: center;
+    position: relative;
 }
 
 .slide {
@@ -112,6 +160,18 @@ z-index:
 
 #infosign:hover #legende {
 		display: block;
+}
+
+#icones {
+    display: inline-block; 
+    opacity: 0.3;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+#icones:hover {
+    display: inline-block; 
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
 
@@ -181,11 +241,321 @@ a.grey:hover {
 	display: none;
 }
 
+.districtes_labels_numeros{
+    margin: 0px 40px;
+    margin-top: 400px;
+}
+
+.districtes_labels_numeros div {
+    width: 10%;
+    float: left;
+    position: relative;
+	text-align:center;
+	color: #888888;
+	background: #ffffff;
+	z-Index: 1;
+	opacity: .7;
+}
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/underscorejs/1.5.2/underscore-min.js"></script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="d3.tooltip.js"></script>
+<script>
+	// d3.tip
+// Copyright (c) 2013 Justin Palmer
+//
+// Tooltips for d3.js SVG visualizations
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module with d3 as a dependency.
+    define(['d3'], factory)
+  } else {
+    // Browser global.
+    root.d3.tip = factory(root.d3)
+  }
+}(this, function (d3) {
+
+  // Public - contructs a new tooltip
+  //
+  // Returns a tip
+  return function() {
+    var direction = d3_tip_direction,
+        offset    = d3_tip_offset,
+        html      = d3_tip_html,
+        node      = initNode(),
+        svg       = null,
+        point     = null,
+        target    = null
+  
+    function tip(vis) {
+      svg = getSVGNode(vis)
+      point = svg.createSVGPoint()
+      document.body.appendChild(node)
+    }
+  
+    // Public - show the tooltip on the screen
+    //
+    // Returns a tip
+    tip.show = function() {
+      var args = Array.prototype.slice.call(arguments)
+      if(args[args.length - 1] instanceof SVGElement) target = args.pop()
+  
+      var content = html.apply(this, args),
+          poffset = offset.apply(this, args),
+          dir     = direction.apply(this, args),
+          nodel   = d3.select(node),
+          i       = directions.length,
+          coords,
+          scrollTop  = document.documentElement.scrollTop || document.body.scrollTop,
+          scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
+  
+      nodel.html(content)
+        .style({ opacity: 1, 'pointer-events': 'all' })
+  
+      while(i--) nodel.classed(directions[i], false)
+      coords = direction_callbacks.get(dir).apply(this)
+      nodel.classed(dir, true).style({
+        top: (coords.top +  poffset[0]) + scrollTop + 'px',
+        left: (coords.left + poffset[1]) + scrollLeft + 'px'
+      })
+  
+      return tip
+    }
+  
+    // Public - hide the tooltip
+    //
+    // Returns a tip
+    tip.hide = function() {
+      nodel = d3.select(node)
+      nodel.style({ opacity: 0, 'pointer-events': 'none' })
+      return tip
+    }
+  
+    // Public: Proxy attr calls to the d3 tip container.  Sets or gets attribute value.
+    //
+    // n - name of the attribute
+    // v - value of the attribute
+    //
+    // Returns tip or attribute value
+    tip.attr = function(n, v) {
+      if (arguments.length < 2 && typeof n === 'string') {
+        return d3.select(node).attr(n)
+      } else {
+        var args =  Array.prototype.slice.call(arguments)
+        d3.selection.prototype.attr.apply(d3.select(node), args)
+      }
+  
+      return tip
+    }
+  
+    // Public: Proxy style calls to the d3 tip container.  Sets or gets a style value.
+    //
+    // n - name of the property
+    // v - value of the property
+    //
+    // Returns tip or style property value
+    tip.style = function(n, v) {
+      if (arguments.length < 2 && typeof n === 'string') {
+        return d3.select(node).style(n)
+      } else {
+        var args =  Array.prototype.slice.call(arguments)
+        d3.selection.prototype.style.apply(d3.select(node), args)
+      }
+  
+      return tip
+    }
+  
+    // Public: Set or get the direction of the tooltip
+    //
+    // v - One of n(north), s(south), e(east), or w(west), nw(northwest),
+    //     sw(southwest), ne(northeast) or se(southeast)
+    //
+    // Returns tip or direction
+    tip.direction = function(v) {
+      if (!arguments.length) return direction
+      direction = v == null ? v : d3.functor(v)
+  
+      return tip
+    }
+  
+    // Public: Sets or gets the offset of the tip
+    //
+    // v - Array of [x, y] offset
+    //
+    // Returns offset or
+    tip.offset = function(v) {
+      if (!arguments.length) return offset
+      offset = v == null ? v : d3.functor(v)
+  
+      return tip
+    }
+  
+    // Public: sets or gets the html value of the tooltip
+    //
+    // v - String value of the tip
+    //
+    // Returns html value or tip
+    tip.html = function(v) {
+      if (!arguments.length) return html
+      html = v == null ? v : d3.functor(v)
+  
+      return tip
+    }
+  
+    function d3_tip_direction() { return 'n' }
+    function d3_tip_offset() { return [0, 0] }
+    function d3_tip_html() { return ' ' }
+  
+    var direction_callbacks = d3.map({
+      n:  direction_n,
+      s:  direction_s,
+      e:  direction_e,
+      w:  direction_w,
+      nw: direction_nw,
+      ne: direction_ne,
+      sw: direction_sw,
+      se: direction_se
+    }),
+  
+    directions = direction_callbacks.keys()
+  
+    function direction_n() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.n.y - node.offsetHeight,
+        left: bbox.n.x - node.offsetWidth / 2
+      }
+    }
+  
+    function direction_s() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.s.y,
+        left: bbox.s.x - node.offsetWidth / 2
+      }
+    }
+  
+    function direction_e() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.e.y - node.offsetHeight / 2,
+        left: bbox.e.x
+      }
+    }
+  
+    function direction_w() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.w.y - node.offsetHeight / 2,
+        left: bbox.w.x - node.offsetWidth
+      }
+    }
+  
+    function direction_nw() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.nw.y - node.offsetHeight,
+        left: bbox.nw.x - node.offsetWidth
+      }
+    }
+  
+    function direction_ne() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.ne.y - node.offsetHeight,
+        left: bbox.ne.x
+      }
+    }
+  
+    function direction_sw() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.sw.y,
+        left: bbox.sw.x - node.offsetWidth
+      }
+    }
+  
+    function direction_se() {
+      var bbox = getScreenBBox()
+      return {
+        top:  bbox.se.y,
+        left: bbox.e.x
+      }
+    }
+  
+    function initNode() {
+      var node = d3.select(document.createElement('div'))
+      node.style({
+        position: 'absolute',
+        top: 0,
+        opacity: 0,
+        'pointer-events': 'none',
+        'box-sizing': 'border-box'
+      })
+  
+      return node.node()
+    }
+  
+    function getSVGNode(el) {
+      el = el.node()
+      if(el.tagName.toLowerCase() == 'svg')
+        return el
+  
+      return el.ownerSVGElement
+    }
+  
+    // Private - gets the screen coordinates of a shape
+    //
+    // Given a shape on the screen, will return an SVGPoint for the directions
+    // n(north), s(south), e(east), w(west), ne(northeast), se(southeast), nw(northwest),
+    // sw(southwest).
+    //
+    //    +-+-+
+    //    |   |
+    //    +   +
+    //    |   |
+    //    +-+-+
+    //
+    // Returns an Object {n, s, e, w, nw, sw, ne, se}
+    function getScreenBBox() {
+      var targetel   = target || d3.event.target,
+          bbox       = {},
+          matrix     = targetel.getScreenCTM(),
+          tbbox      = targetel.getBBox(),
+          width      = tbbox.width,
+          height     = tbbox.height,
+          x          = tbbox.x,
+          y          = tbbox.y
+  
+      point.x = x
+      point.y = y
+      bbox.nw = point.matrixTransform(matrix)
+      point.x += width
+      bbox.ne = point.matrixTransform(matrix)
+      point.y += height
+      bbox.se = point.matrixTransform(matrix)
+      point.x -= width
+      bbox.sw = point.matrixTransform(matrix)
+      point.y -= height / 2
+      bbox.w  = point.matrixTransform(matrix)
+      point.x += width
+      bbox.e = point.matrixTransform(matrix)
+      point.x -= width / 2
+      point.y -= height / 2
+      bbox.n = point.matrixTransform(matrix)
+      point.y += height
+      bbox.s = point.matrixTransform(matrix)
+  
+      return bbox
+    }
+  
+    return tip
+  };
+
+}));
+</script>
 </head>
 <body style="margin: 0px; padding: 0px; border: 0px; background: #ffffff">
 <div id="tosmall" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; padding-top: 150px; padding-left: 80px; padding-right: 80px; display: none">
@@ -211,90 +581,175 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
 <div style="margin-left: auto; margin-right: auto; background-color: #fff; width: 100%; max-width: 800px;">
 <div style="max-width: 800px; display: inline-block; text-align: left;">
 </div>
-<h1 style="position: absolute;z-Index: 1; margin-top: 0px; width: 100%; max-width: 800px; overflow: hide; top: 0px; font-size: 33px; "><span id="h1text">Welcome our 100 winners!</span>
-<span id="logo-div" style="position: absolute; right: 0px; top: 0px; z-Index: -1;"><a target="_blank" href="http://speedupeurope.eu"><img src="sue_logo_des.png" style="border: 0px; width: 100px; " /></a></span>
 
-</h1>
-<div style="position: relative; height: 420px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
+<div style="position: relative; height: 500px; width: 100%; max-width: 800px; display: inline-block; background: #ffffff; position: relative">
 <div id="background" style="width: 100%; max-width: 800px; height: 400px">
 </div>
 <div id="info" style="color: #a0a0a0; font-size:18px; text-align: center; z-index:1">
-<div style="display: none; float: left; color: #E0E0E0; position: absolute; left: 0px; z-Index:2; font-size: 13px; width: 95px; bottom: 12px" id="credit">
-	Interactive by <a class="grey" target="_blank" href="http://opendatacity.de">OpenDataCity</a>
-</div>
+
 <span id="navi" style="margin: auto">
- 	<a onClick="lastmode()" href="#" >&laquo; Back</a>
- 	<a onClick="nextmode()" href="#" >Next &raquo;</a>
+ 	<a onClick="lastmode()" href="#" >&laquo; Anterior</a>
+ 	<a onClick="nextmode()" href="#" >Següent &raquo;</a>
 </span>
 <div id="infosign" style="display: inline-block; float: right">
 &#9432;
-	<div id="legende"><p>Each <img src="punkte.jpg"> represents one winning proposal. Size corresponds to the number of team members, color to the overall quality as assessed by the jury.</p>
+  <div id="legende"><p>Cada cercle representa una biblioteca. El color varia segons el districte a què pertany.</p>
 
-	<p>Hovering will give you more info, clicking will follow the proposal through the visualization.</p>
+  <p>Si poses el ratolí sobre el cercle, sabràs quina és. Si el cliques, seguiràs la posició de la biblioteca al llarg de l’interactiu. Dins de cada franja, la posició del cercle segons el seu valor és aproximada.</p>
 
-	<p>You are welcome to <a target="_blank" href="embed.html">embed</a> this interactive on your site. 
-
-	<p style="font-size:80%">Inspired by the work of <a href="http://bl.ocks.org/mbostock/1021953">Michael Bostock</a>, relying heavily on his mind-blowing <a href="http://d3js.org/">d3.js</a>. You can fork the <a href="https://github.com/mvtango/speedupeurope-graphic">code on GitHub</a>. Data source: <a href="http://speedupeurope.eu">SpeedUpEurope</a>.</p> </div>
+  <p style="font-size:80%">Aquest interactiu en <a href="http://d3js.org" target="_blank">d3.js</a> del <a href="https://twitter.com/btvdatalab" target="_blank"> BTVdatalab </a> està basat en el treball de <a href="https://twitter.com/btvdatalab" target="_blank">Michael Bostock</a> i de <a href="http://speedupeurope.eu" target="_blank">Martin Virtel/Speed Europe</a>, en codi dipositat a <a href="https://github.com/BTVdatalab/BCN2015biblioteques" target="_blank">Github</a>. Font de les dades: Biblioteques de Barcelona.</p> 
+  
+  </div>
 </div>
+
 </div>
-<div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 24px;" ></div>
+<div id="icones" style="position: absolute;display: inline-block;margin-top:25px;margin-left:10px">
+  <a href="http://www.btv.cat/" style="background-color: #ffffff;" target="_blank"><img src="BTV_Data_LAB_logo_v2.png" style=" width:70px"></a>
+</div>
+<div id="frame" style="max-width: 800px; width: 100%; height: 350px; position: relative; top: 104px;" ></div>
 </div>
 <div class="invisible">
 
 
 
 
-<div class="slide" id="prLlibrePrTotal">
- <h2>pr. Llibre / pr. Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+<div class="slide" id="districtes">
+ <h2>Biblioteques per districte</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+
  </div>
+    <div class="districtes_labels" style="top:60px;">
+    <div class="label" style="left: 18%; top: 92%;">Sants-Montjuïc</div>
+    <div class="label" style="left: 47%; top: 47.64%;">Gràcia</div>
+    <div class="label" style="left: 46%;top: 72.35%;">Eixample</div>
+    <div class="label" style="left: 20%;top: 60.78%;">Les Corts</div> 
+    <div class="label" style="left: 30%; top: 38%;;">Sarrià - Sant Gervasi</div>
+    <div class="label" style="left: 56%; top: 52.92%;">Horta - Guinardó</div> 
+    <div class="label" style="left: 71.03%;top: 92.92%;">Sant Martí</div>
+    <div class="label" style="left: 43.65%; top: 92.92%;">Ciutat Vella</div> 
+    <div class="label" style="left: 72%; top: 36.21%;">Nou Barris</div>
+    <div class="label" style="left: 82%; top: 63%;">Sant Andreu</div>
+    </div>
+    
+ <div class="bu">Hi ha 40 biblioteques i 10 districtes </div>
 </div>
 
-
+<div class="slide" id="bibHab">
+ <h2>Biblioteques al districte per cada 100.000 habitants</h2>
+ <div class="label" style="left:18%; top:80%;">Dos</div>
+ <div class="label" style="left:47.5%; top:80%;">Tres</div>
+ <div class="label" style="right:18%; top:80%;">Quatre</div>
+ <div class="bu"> 
+ </div>
+</div>
 
 <div class="slide" id="visitesTotal">
- <h2>Visites Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
- </div>
+ <h2>Visites a biblioteques</h2>
+ <div class="etiquetes">
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+</div>
+ <div class="bu">Visites presencials, no inclouen les virtuals</div>
 </div>
 
+<div class="slide" id="visDistrictes" style="height:400px">
+ <h2>Visites a biblioteques per districte</h2>
+
+ 
+ <div class="text table" style="text-align: center; left: 247px; top: 306px; ">
+ </div>  
+ <div class="bu">Visites presencials, no inclouen les virtuals</div>
+  <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
+ </div>
+</div>
 
 <div class="slide" id="prTotal">
- <h2>Prestecs Totals</h2>
- <div class="label" style="left:6.909%; top:63.35%;">Good</div>
- <div class="label" style="left:77.88%; top:34.35%;">Very Good</div>
- <div class="bu">We've been rating proposals according to a proprietary scale to select the winners. Here's a rough idea how everybody fared. 
+ <h2>Préstec bibliotecari</h2>
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+ <div class="bu">Préstec de llibres, dvds, cds i altres 
  </div>
 </div>
-<div class="slide" id="districtes">
- <h2>Districtes</h2>
+
+<div class="slide" id="prTotalDis">
+ <h2>Préstec bibliotecari per districte</h2>
  <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
- 
+ </div>  
+
+ <div class="bu">Préstec de llibres, dvds, cds i altres <br/> Distribució vertical segons número de districte</div>
+  <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
  </div>
- 	<!--
-    <div class="label" style="left:0%; top: 62.02%;">Portugal</div>
-    <div class="label" style="left: 11.53%; top: 68.64%;">Spain</div>
-    <div class="label" style="left:16.90%; top:48.35%;">Belgium</div>
-    <div class="label" style="left: 6%; top: 36.78%;">The Netherlands</div> 
-    <div class="label" style="left: 6%; top: 22.07%;">United Kingdom</div>
-    <div class="label" style="left: 40.15%; top: 21.92%;">Denmark</div> 
-    <div class="label" style="left: 52.03%; top: 41.92%;">Germany</div>
-    <div class="label" style="left: 38.65%; top: 75.92%;">Italy</div> 
-    <div class="label" style="left: 57.65%; top:12.21%;">Sweden</div>
-    <div class="label" style="left: 76.4%; top: 28.64%;">Latvia</div>
-    <div class="label" style="left: 60.03%; top: 54.08%;">Czech Republic</div>
-    <div class="label" style="left: 65.65%; top: 75.07%;">Serbia</div>
-    <div class="label" style="left: 80.15%; top: 60.78%;">Bulgaria</div>
-    <div class="label" style="left: 81.65%; top: 75.07%;">Greece</div>
-    -->
- <div class="bu">Companies and team leaders come from 13 different european countries.
- <br/>
+ </div>
+
+<div class="slide" id="prLlibres">
+ <h2>Préstec de llibres </h2>
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+ <div class="bu">
  </div>
 </div>
+
+<div class="slide" id="prLlibresDis">
+ <h2>Préstec de llibres per districte</h2>
+ <div class="text table" style="text-align: center; left: 247px; top: 76px; ">
+ </div>  
+ <div class="bu">Distribució vertical  segons número de districte
+ </div>
+   <div class="districtes_labels_numeros">
+ <div class="">1</div>
+ <div class="" >2</div>
+ <div class="" >3</div>
+ <div class="" >4</div>
+ <div class="" >5</div>
+<div class="" >6</div>
+<div class="">7</div>
+<div class="" >8</div>
+<div class="" >9</div>
+ <div class="" >10</div>
+ </div>
+</div>
+
+
+<div class="slide" id="prLlibrePrTotal">
+ <h2>De cada 10 préstecs, són llibres:</h2>
+ <div class="label" style="left:18%; top:80%;">Cinc</div>
+ <div class="label" style="left:48%; top:80%;">Sis</div>
+ <div class="label" style="right:16%; top:80%;">Set</div>
+ <div class="bu">
+ </div>
+</div>
+
+<div class="slide" id="prLlibreVis">
+ <h2>Per cada 10 visites, llibres que es presten:</h2>
+ <div class="label" style="left:15%; top:80%;">Dos</div>
+ <div class="label" style="left:35.5%; top:80%;">Tres</div>
+ <div class="label" style="right:35.5%; top:80%;">Quatre</div>
+ <div class="label" style="right:15%; top:80%;">Cinc</div>
+ <div class="bu">
+ </div>
+</div>
+
+
 <!--
 <div class="slide" id="country">
  <h2>From all over Europe</h2>
@@ -499,15 +954,26 @@ function make_areas(cols,rows) {
 // <>
 function set_nmodes() {
 	var nmodes={}
-	var prLlibrePrTotalscale=d3.scale.quantize().domain([0.47,0.66]).range(["0","1","2","3","4","5","6"]);
-	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6"]);
-	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6"]);
+	var prLlibrePrTotalscale=d3.scale.quantize().domain([45,75]).range(["0","1","2"]);
+	var habscale=d3.scale.quantize().domain([1.5,4.5]).range(["0","1","2"]);
+	var LlibreVisscale=d3.scale.quantize().domain([0.15,0.55]).range(["0","1","2", "3"]);
+	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invvisitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
+	var prTotalscale=d3.scale.quantize().domain([12000,245000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invprTotalscale=d3.scale.quantize().domain([12000,245000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
+	var prLlibrescale=d3.scale.quantize().domain([5000,160000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
+	var invprLlibrescale=d3.scale.quantize().domain([5000,160000]).range(["13","12","11","10","9","8","7","6","5","4","3","2", "1", "0"]);
+
 	//var impactscale=d3.scale.quantize().domain([5.3,9]).range(["0","1","2","3","4","5","6","7","8","9"]);
 	var numericfoci=make_areas(7,1);
+	var trinumericfoci=make_areas(3,1);
+	var quanumericfoci=make_areas(4,1);
+	var catorfoci=make_areas(14,1);
 	//var dualfoci=make_areas(5,1);
 	//var threefoci=make_areas(3,1);
 	//var ninefoci=make_areas(5,5);
 	var mapfoci=make_areas(7,7);
+	var mapCatfoci	=make_areas(10,14);
 	/*
 	var ninemap= { 'YNN' : 'C0', // agribusiness 
 		       'NYN' : 'A3', // smartcity
@@ -518,36 +984,78 @@ function set_nmodes() {
 		       'YYY' : 'C2', // smartcity + cleantech + agribusiness
 		       'NNN' : 'E4', // nothing at all
 		      }*/
-	var districtemap= { '1' :  'C5',
-	                  '2' :  'C3',
-			  		  '3' :  'A5',
-			  		  '4' :  'A2',
-			  		  '5' :  'B1',
-			          '6' :  'C2',
-			  		  '7' :  'D1',
-			  		  '8' :  'E1',
-			  		  '9' :  'F2',
-			  		  '10' :  'E5'
+	var districtemap= { '1' :  'D5',
+	                  '2' :  'D3',
+			  		  '3' :  'B5',
+			  		  '4' :  'B2',
+			  		  '5' :  'C1',
+			          '6' :  'D2',
+			  		  '7' :  'E1',
+			  		  '8' :  'F1',
+			  		  '9' :  'G2',
+			  		  '10' :  'F5'
+			 }
+	var districteVismap= { '1' :  'A',
+	                  '2' :  'B',
+			  		  '3' :  'C',
+			  		  '4' :  'D',
+			  		  '5' :  'E',
+			          '6' :  'F',
+			  		  '7' :  'G',
+			  		  '8' :  'H',
+			  		  '9' :  'I',
+			  		  '10' :  'J'
 			 }
 	
-
-	nmodes["prLlibrePrTotal"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
-		};
-	nmodes["visitesTotal"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return visitesTotalscale(d["visites"]) }
-		};
-	nmodes["prTotal"]=
-		{ foci:       numericfoci,
-		  translate : function(d) { return prTotalscale(d["prestecs"]) }
-		};
 	nmodes["districtes"]=
 		{ foci:       mapfoci,
 		  translate : function(d) { 
 				return districtemap[d.idDistricte] }
 		};
+	nmodes["visitesTotal"]=
+		{ foci:       catorfoci,
+		  translate : function(d) { return visitesTotalscale(d["visites"]) }
+		};
+
+	nmodes["visDistrictes"]=
+		{ foci:       mapCatfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+invvisitesTotalscale(d["visites"])) }
+		};
+	nmodes["prLlibrePrTotal"]=
+		{ foci:       trinumericfoci,
+		  translate : function(d) { return prLlibrePrTotalscale(d["prLlibresPrTotal"]) }
+		};
+	
+	nmodes["prTotal"]=
+		{ foci:       catorfoci,
+		  translate : function(d) { return prTotalscale(d["prestecs"]) }
+		};
+	nmodes["bibHab"]=
+		{ foci:       trinumericfoci,
+		  translate : function(d) { return habscale	(d["bibcentmhab"]) }
+		};
+	nmodes["prTotalDis"]=
+		{ foci:       mapCatfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+invprTotalscale(d["prestecs"])) }
+		};
+	nmodes["prLlibresDis"]=
+		{ foci:       mapCatfoci,
+		  translate : function(d) { 
+				return (districteVismap[d.idDistricte]+invprLlibrescale(d["prLlibre"])) }
+		};
+	nmodes["prLlibres"]=
+		{ foci:       catorfoci,
+		  translate : function(d) { return prLlibrescale(d["prLlibre"]) }
+		};
+	nmodes["prLlibreVis"]=
+		{ foci:       quanumericfoci,
+		  translate : function(d) { return LlibreVisscale(d["prLlibreVisita"]) }
+		};
+
+	
+
 	/*
 	nmodes["score"]=
 		{ foci:       numericfoci,
@@ -662,13 +1170,15 @@ var svg = d3.select("div#frame").append("svg")
 		  d={ x: a[0], y: a[1]};
 		  // console.log('<div class="label" style="left:'+((d.x*100/settings.width)+"").substr(0,5)+'%; top:'+((d.y*100/settings.height)+"").substr(0,5)+'%;"> </div>');
 	 });
-
 var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-	 var f='<strong>'+d["biblioteca"]+"</strong>  <br/>"+d["districte"] ;
+	 var f='<strong>'+d["biblioteca"]+"</strong>  <br/>"+"Districte "  + d["idDistricte"]+"<br/>"+d["districte"];
+	 if (d["infoExtra"]>"") {
+   f=f+"<br/>"	+ d["infoExtra"];
+   }  
 	 /*
 	 if (d["title"]>"") {
 	 	f=f+" - "+d["title"];
-	 }
+	 
 	 f=f+'<br /><span style="font-size: 80%">'+d["teamsize"]+" ";
 	 if (d["sme"]!="T") {
 	 	f=f+"SME ";
@@ -679,6 +1189,31 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 }
 	 f=f+"</span>";
 	 */
+	 switch(global.mode){
+	 	case "visitesTotal":
+	 	case "visDistrictes":
+	 		 f=f+"<br/>Visites: "+d["visitesMostrar"];
+	 	break;
+	 	case "prTotal":
+	 	case "prTotalDis":
+	 		 f=f+"<br/>Préstecs: "+d["prestecsMostrar"];
+	 	break;
+	 	case "prLlibres":
+	 	case "prLlibresDis":
+	 		 f=f+"<br/>Llibres prestats: "+d["prLlibreMostrar"];
+	 	break;
+	 	case "prLlibrePrTotal":
+	 		 f=f+"<br/>De cada 10 préstecs, "+d["prLlibresPrTotalMostrar"]+" són llibres.";
+	 	break;
+	 	case "bibHab":
+	 		 f=f+"<br/>"+d["bibcentmhabMostrar"]+" biblioteques/100m hab.";
+	 	break;
+	 	case "prLlibreVis":
+	 		 f=f+"<br/>Per cada 10 visites, es presten "+d["prLlibreVisitaMostrar"]+" llibres.";
+	 	break;
+	 }
+
+	 
 	 return(f); 
 	 });
 
@@ -767,7 +1302,7 @@ function collide(node) {
 
 
 // http://stackoverflow.com/questions/17671252/d3-create-a-continous-color-scale-with-many-strings-inputs-for-the-range-and-dy 
-
+/*
 function heatmapColor(colors,domain) {
 
 	var heatmapColor = d3.scale.linear()
@@ -778,14 +1313,15 @@ function heatmapColor(colors,domain) {
 	var f= function(v) { return heatmapColor(c(v)) }
 
 	return f
-}
+}*/
+
 
 //
-var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[1,10])
+//var heatmap=heatmapColor(["#ff0100","#f9a000","#ff5500"],[1,10])
 
-// heatmap=heatmapColor(["#990033","#f9b822","#f9b822"],[20,30]);
+//var heatmap=heatmapColor(["#990033","#f9b822","#f9b822"],[1,10]);
      
-// heatmap=heatmapColor(["#990033","#f9a000","#ff5500"],[20,30])
+//var heatmap=heatmapColor(["#990033","#f9a000","#ff5500"],[1,10])
 
 function makeURL(vals) {
 	var u=[];
@@ -875,8 +1411,31 @@ $("#background").on("click",function(e) {
 	e.preventDefault();
 });
 */
-
-d3.csv("biblio.csv",function(d) { 
+function getDistrColor(distr){
+	switch(distr){
+		case 1:
+		return "#485975";
+		case 2:
+		return "#E396B2";
+		case 3:
+		return "#0092DD";
+		case 4:
+		return "#F4F54B";
+		case 5:
+		return "#186E05";
+		case 6:
+		return "#DA251C";
+		case 7:
+		return "#FF9E00";
+		case 8:
+		return "#59E450";
+		case 9:
+		return "#8F5645";
+		case 10:
+		return "#C0A264";
+	}
+}
+d3.csv("https://raw.githubusercontent.com/BTVdatalab/BCN2015biblioteques/master/graphic/final/biblio.csv",function(d) { 
 			_.each(["idDistricte","visites","prestecs","prLlibresPrTotal"], function(e,i) {
 				d[e]=parseFloat(d[e]);
 			})
@@ -885,7 +1444,7 @@ d3.csv("biblio.csv",function(d) {
 	function(error,rows) {
 	_.each(rows, function(n) {
 		n.radius=5;
-		n.fill=heatmap(n["idDistricte"]);
+		n.fill=getDistrColor(n["idDistricte"]);
 		n=configure_node(n);
 		nodes.push(n);
 		if (global.startwith && (global.follow == false) && (n['biblioteca'].toLowerCase().indexOf(global.startwith.f)==0)) {
