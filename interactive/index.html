@@ -1435,7 +1435,7 @@ function getDistrColor(distr){
 		return "#C0A264";
 	}
 }
-d3.csv("https://raw.githubusercontent.com/BTVdatalab/BCN2015biblioteques/master/graphic/final/biblio.csv",function(d) { 
+d3.csv("https://raw.githubusercontent.com/BTVdatalab/BCN2015biblioteques/master/interactive/biblio.csv",function(d) { 
 			_.each(["idDistricte","visites","prestecs","prLlibresPrTotal"], function(e,i) {
 				d[e]=parseFloat(d[e]);
 			})
