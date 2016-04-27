@@ -257,6 +257,113 @@ a.grey:hover {
 	opacity: .7;
 }
 
+/**, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}*/
+
+
+/*.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}*/
+
+.popup h3 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: center;
+}
+.popup .close {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  transition: all 0.2s;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  cursor:pointer;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  text-align: center;
+}
+
+/*Let's make it appear when the page loads*/
+.overlay:target:before {
+    display: none;
+}
+.overlay:before {
+  content:"";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 9;
+}
+.overlay .popup {
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: fixed;
+  top: 0;
+  left: 35%;
+  padding: 25px;
+  margin: 70px auto;
+  z-index: 10;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+.overlay:target .popup {
+    top: -100%;
+    left: -100%;
+}
+
+.popup_button{
+text-align: center;
+margin-top: 30px;
+font-size: 24px;
+width: 60px;
+margin: 30px auto 0px;
+}
+
+.popup_button a{
+  border: 2px solid rgb(153, 0, 51);
+border-radius: 10px;
+padding: 0px 10px;
+color:rgb(153, 0, 51);
+}
+
+
+@media screen and (max-width: 768px){
+  /*.box{
+    width: 70%;
+  }*/
+  .overlay .popup{
+    width: 70%;
+    left: 15%;
+  }
+}
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="http://cdn.jsdelivr.net/underscorejs/1.5.2/underscore-min.js"></script>
@@ -555,9 +662,28 @@ a.grey:hover {
   };
 
 }));
+
+function closePopup() {
+  document.getElementById('myPopup').style.display = "none";
+  global.mode = "districtes";
+  themode(modes[0],100);
+};
+
 </script>
 </head>
+
 <body style="margin: 0px; padding: 0px; border: 0px; background: #ffffff">
+<div id="myPopup" class="overlay">
+  <div class="popup">
+    <h3>Tria la teva biblioteca</h3>
+    <a class="close" style="cursor:pointer" onclick="closePopup()">&times;</a>
+    <div class="content">
+      Clica un dels cercles i segueix la posició de la biblioteca a tot l'interactiu.
+    </div>
+    <div class="popup_button"><a style="cursor:pointer" onclick="closePopup()">OK</a></div>
+  </div>
+</div>
+
 <div id="tosmall" style="position: absolute; width: 100%; height: 1000px; background-color: #ffffff; z-Index:2; text-align: center; padding-top: 150px; padding-left: 80px; padding-right: 80px; display: none">
 	Your screen may not wide enough to show this graphic. We recommend 440 pixels screen width.  
 	<a href="#" onClick="$('#tosmall').fadeOut()">Show it anyway.</a>
