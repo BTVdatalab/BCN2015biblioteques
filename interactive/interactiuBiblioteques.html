@@ -805,6 +805,14 @@ You're using a dangerously antique browser. Please <a target="_blank" href="http
  </div>
 </div>
 
+<div class="slide" id="visitesHab">
+ <h2>Visites per any per cada habitant del districte.</h2>
+ <div class="label" style="left:5%; top:80%;">Menys</div>
+ <div class="label" style="right:5%; top:80%;">Més</div>
+ <div class="bu">
+ </div>
+</div>
+
 <div class="slide" id="prTotal">
  <h2>Préstec bibliotecari</h2>
  <div class="label" style="left:5%; top:80%;">Menys</div>
@@ -1087,6 +1095,7 @@ function make_areas(cols,rows) {
 function set_nmodes() {
 	var nmodes={}
 	var prLlibrePrTotalscale=d3.scale.quantize().domain([45,75]).range(["0","1","2"]);
+    var visitesHabscale=d3.scale.quantize().domain([-0.5,18.5]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
 	var habscale=d3.scale.quantize().domain([1.5,4.5]).range(["0","1","2"]);
 	var LlibreVisscale=d3.scale.quantize().domain([0.15,0.55]).range(["0","1","2", "3"]);
 	var visitesTotalscale=d3.scale.quantize().domain([25196,732000]).range(["0","1","2","3","4","5","6","7","8","9","10","11", "12", "13"]);
@@ -1153,6 +1162,11 @@ function set_nmodes() {
 		{ foci:       mapCatfoci,
 		  translate : function(d) {
 				return (districteVismap[d.idDistricte]+invvisitesTotalscale(d["visites"])) }
+		};
+    nmodes["visitesHab"]=
+		{ foci:       catorfoci,
+		  translate : function(d) {
+				return visitesHabscale(Math.round(d["visites"]/d["habBiblio"] * 100) / 100) }
 		};
 	nmodes["prLlibrePrTotal"]=
 		{ foci:       trinumericfoci,
@@ -1343,6 +1357,8 @@ var tooltip = d3.tip().attr('class', 'd3-tip').html(function(d) {
 	 	case "prLlibreVis":
 	 		 f=f+"<br/>Per cada 10 visites, es presten "+d["prLlibreVisitaMostrar"]+" llibres.";
 	 	break;
+        case "visitesHab":
+            f=f+"<br/>"+Math.round(d["visites"]/d["habBiblio"] * 100) / 100+" visites per cada hab. del districte.";
 	 }
 
 
